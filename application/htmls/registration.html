@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <script src="../scripts/main.js"></script>
+    <script id="registration_html" type="text/template"></script>
+</head>
+<body>
+    <form name="UserRegistration">
+        <p><b>Давай зарегистрируемся</b></p>
+        <p><b>Меня назвали:</b><br>
+            <input type="text" name="UserName" size="100">
+        </p>
+        <p><b>и я считаю себя:</b><br>
+            <select name="UserTypes">
+                <option value="student" selected>студентом
+                <option value="teacher" selected>преподавателем
+            </select>
+        </p>
+        <input type="button" id="send_registration_form" value="Тык!">
+    </form>
+    <p id="error"></p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "app": {
+      "background": {
+          "scripts": [ "scripts/background.js" ]
+      }
+  },
+  "manifest_version": 2,
+  "name": "Presence",
+  "version": "1.0.0",
+  "icons": {
+    "128": "pictures/icon_128.png"
+  },
+  "sandbox": {
+    "content_security_policy": "sandbox allow-scripts; script-src 'unsafe-inline' 'sha256-VjVjdwc6siEDgbZrcUll+7YwYheuU7SW5rbm60a0bt4='"
+  },
+  "bluetooth": {}
+}
