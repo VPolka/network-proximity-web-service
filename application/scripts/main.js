@@ -1,5 +1,8 @@
 window.onload = function () {
 
+var host = "host";
+var port = "port";
+
     chrome.bluetooth.getAdapterState(function(result) {
         var deviceAddress = result.address;
         var userType;
@@ -88,7 +91,7 @@ window.onload = function () {
                 document.getElementById('error').innerHTML="Это явно не самый лучший курс в мире...";
             } else {
                 httpRequest = new XMLHttpRequest();
-                const url='https://localhost:4443/create_course';
+                const url='https://' + host + ':' + port + '/create_course';
                 httpRequest.open("POST", url);
                 httpRequest.setRequestHeader('Content-Type', 'text/plain');
                 httpRequest.send('{"device_address": "' + deviceAddress
@@ -124,7 +127,7 @@ window.onload = function () {
                 document.getElementById('error').innerHTML="Такого времени не существует!";
             } else {
                 httpRequest = new XMLHttpRequest();
-                const url='https://localhost:4443/open_course';
+                const url='https://' + host + ':' + port + '/open_course';
                 httpRequest.open("POST", url);
                 httpRequest.setRequestHeader('Content-Type', 'text/plain');
                 httpRequest.send('{"course_name": "' + course
@@ -156,7 +159,7 @@ window.onload = function () {
 
         function close_course(course) {
             httpRequest = new XMLHttpRequest();
-            const url='https://localhost:4443/close_course';
+            const url='https://' + host + ':' + port + '/close_course';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(course);
@@ -182,7 +185,7 @@ window.onload = function () {
 
         function delete_course(course) {
             httpRequest = new XMLHttpRequest();
-            const url='https://localhost:4443/delete_course';
+            const url='https://' + host + ':' + port + '/delete_course';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(course);
@@ -200,7 +203,7 @@ window.onload = function () {
         function teacher_course_html(course) {
             document.getElementById('course').innerHTML = "<h1>" + course + "</h1>";
             httpRequest = new XMLHttpRequest();
-            var url='https://localhost:4443/is_open_course';
+            var url='https://' + host + ':' + port + '/is_open_course';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(course);
@@ -223,7 +226,7 @@ window.onload = function () {
             }
 
             httpRequest = new XMLHttpRequest();
-            url='https://localhost:4443/teacher_attendance';
+            url='https://' + host + ':' + port + '/teacher_attendance';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(course);
@@ -290,7 +293,7 @@ window.onload = function () {
 
         function view_teacher_courses() {
             httpRequest = new XMLHttpRequest();
-            const url='https://localhost:4443/courses';
+            const url='https://' + host + ':' + port + '/courses';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(deviceAddress);
@@ -343,7 +346,7 @@ window.onload = function () {
                 document.getElementById('error').innerHTML="Попросили же ввести название курса!";
             } else {
                 httpRequest = new XMLHttpRequest();
-                const url='https://localhost:4443/subscribe_course';
+                const url='https://' + host + ':' + port + '/subscribe_course';
                 httpRequest.open("POST", url);
                 httpRequest.setRequestHeader('Content-Type', 'text/plain');
                 httpRequest.send('{"device_address": "' + deviceAddress
@@ -395,7 +398,7 @@ window.onload = function () {
                     }
                     if (check_course_owner_address) {
                         httpRequest = new XMLHttpRequest();
-                        const url='https://localhost:4443/subscribe';
+                        const url='https://' + host + ':' + port + '/subscribe';
                         httpRequest.open("POST", url);
                         httpRequest.setRequestHeader('Content-Type', 'text/plain');
                         httpRequest.send('{"course": "' + course + '", "device_address": "' + deviceAddress + '"}');
@@ -424,7 +427,7 @@ window.onload = function () {
 
         function unsubscribe_course(course) {
             httpRequest = new XMLHttpRequest();
-            const url='https://localhost:4443/unsubscribe_course';
+            const url='https://' + host + ':' + port + '/unsubscribe_course';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send('{"course": "' + course + '", "device_address": "' + deviceAddress + '"}');
@@ -442,7 +445,7 @@ window.onload = function () {
         function student_course_html(course) {
             document.getElementById('course').innerHTML = "<h1>" + course + "</h1>";
             httpRequest = new XMLHttpRequest();
-            var url='https://localhost:4443/is_open_course';
+            var url='https://' + host + ':' + port + '/is_open_course';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(course);
@@ -464,7 +467,7 @@ window.onload = function () {
             }
 
             httpRequest = new XMLHttpRequest();
-            url='https://localhost:4443/student_attendance';
+            url='https://' + host + ':' + port + '/student_attendance';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send('{"course": "' + course + '", "device_address": "' + deviceAddress + '"}');
@@ -513,7 +516,7 @@ window.onload = function () {
 
         function view_student_courses() {
             httpRequest = new XMLHttpRequest();
-            const url='https://localhost:4443/courses';
+            const url='https://' + host + ':' + port + '/courses';
             httpRequest.open("POST", url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.send(deviceAddress);
@@ -560,7 +563,7 @@ window.onload = function () {
                 document.getElementById('error').innerHTML="Обделенных именем не регистрируем!";
             } else {
                 httpRequest = new XMLHttpRequest();
-                const url='https://localhost:4443/registration';
+                const url='https://' + host + ':' + port + '/registration';
                 httpRequest.open("POST", url);
                 httpRequest.setRequestHeader('Content-Type', 'text/plain');
                 httpRequest.send('{"device_address": "' + deviceAddress + '", "user_name": "' + userName+ '", "user_type": "' + userType + '"}');
